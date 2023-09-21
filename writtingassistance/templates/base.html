@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      {% load static %}
+      <meta charset="UTF-8">
+      <title>Revolutionary AI-based Content Generator platform</title>
+
+      <meta property="og:title" content="Revolutionary AI-based Content Generator platform">
+      <meta property="og:type" content="article" />
+      <meta property="og:image" content="{% static 'images/card_img.png'%}">
+      <meta property="og:url" content="https://ai.creativebuffer.com/">
+      <meta name="twitter:card" content="summary_large_image">
+
+      <!--  Non-Essential, But Recommended -->
+      <meta property="og:description" content="This innovative solution harnesses the power of artificial intelligence to revolutionize the way businesses generate and manage their content.">
+      <meta property="og:site_name" content="creative buffer ">
+      <meta name="twitter:image:alt" content="creative buffer ">
+
+      <!--  Non-Essential, But Required for Analytics -->
+      <meta property="fb:app_id" content="creative buffer " />
+      <meta name="twitter:site" content="creative buffer ">
+
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="{% static 'css/bootstrap.min.css' %}?v={{CACHE_VERSION}}" rel="stylesheet">
+      {% comment %} <link href="//cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css" rel="stylesheet"> {% endcomment %}
+      <link rel="stylesheet" href="{% static 'css/jquery.dataTables.min.css'%}?v={{CACHE_VERSION}}">
+      <link rel="stylesheet" href="{% static 'css/responsive.dataTables.min.css' %}?v={{CACHE_VERSION}}">
+      <link rel="stylesheet" href="{% static 'css/select.dataTables.min.css' %}?v={{CACHE_VERSION}}">
+      <link href="{% static 'css/style.css' %}?v={{CACHE_VERSION}}" rel="stylesheet">
+     
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">       
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+      <link rel="shortcut icon" href="{% static 'images/ai-fav-icon.png' %}?v={{CACHE_VERSION}}" type="image/x-icon">
+      
+      <script src="{% static 'js/siteScript/jquery-3.6.3.min.js'%}?v={{CACHE_VERSION}}"></script>
+      <script src="{% static 'js/siteScript/jquery.validate.min.js'%}?v={{CACHE_VERSION}}"></script>
+      <script src="{% static 'js/siteScript/bootstrap.bundle.min.js'%}?v={{CACHE_VERSION}}"></script>
+      {% comment %} <script src="//cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script> {% endcomment %}
+      <script src="{% static 'js/siteScript/dataTable.js' %}?v={{CACHE_VERSION}}"></script>
+      <script src="{% static 'js/siteScript/dataTables.responsive.min.js' %}?v={{CACHE_VERSION}}"></script>
+      <script src="{% static 'js/siteScript/dataTable.select.min.js' %}?v={{CACHE_VERSION}}"></script>
+      <script src="{% static 'js/siteScript/jspdf.min.js'%}?v={{CACHE_VERSION}}"></script>
+      <script src="{% static 'js/appScript/common.js' %}?v={{CACHE_VERSION}}"></script>
+      <script src="{% static 'js/appScript/constants.js' %}?v={{CACHE_VERSION}}"></script>
+       {% block extrastyle %}
+       {% endblock extrastyle %}
+   </head>
+   <body>
+      <header>
+         <nav class="navbar navbar-expand-xl">
+            <div class="container">
+               <a class="navbar-brand" href="{% url 'dashboard' %}">
+               <img src="{% static 'images/logo-main.png' %}?v={{CACHE_VERSION}}" alt="logo"  >
+               </a>
+               <div class="listing">
+                   <ul class="prof-list mbl-vw">
+                  </ul>
+                </div>
+               <button class="navbar-toggler toggle_btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse listing" id="navbarSupportedContent">
+                  <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+
+                      <li class="nav-item">
+                        <a class="nav-link" data-target="all" >All</a></li>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link article_blog" data-target="articleBlock">Article and Blog</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link social_media" data-target="socialMedia" >Social Media</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" data-target="writingData">Writing</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link keyword_research" data-target="keywordResearch">Keyword Research</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" data-target="ecommerceData">Ecommerce</a> 
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" data-target="websiteData">Website</a>
+                      </li>                     
+                  </ul>
+
+                  <ul class="ask-list">
+                    <li class="nav-item ask-btn">
+                      <a class="nav-link"   href="{% url 'ask_me_anything' %}">Ask Buffy</a>
+                    </li>
+                  </ul>
+                  
+                  <ul class="prof-list">
+                  </ul>
+                
+               </div>
+            </div>
+         </nav>
+      </header>
+      <div class="section-one">
+         <div class="container">
+            {% csrf_token %}
+            <div class="fixed_loading">
+               <div class="fixed_loading_inset">
+                   <div class="spinner">
+                       <div class="rect1"></div>
+                       <div class="rect2"></div>
+                       <div class="rect3"></div>
+                       <div class="rect4"></div>
+                       <div class="rect5"></div>
+                   </div>
+               </div>
+           </div>
+            <div class="row">
+               <!-- <div class="col-sm-12 banner_text text-center mt-5 mb-5"> -->
+                
+
+                  {% block content %}
+                   {% endblock content %}
+                   {% block extrajs %}
+                    {% endblock extrajs %}
+                    
+            </div>
+         </div>
+      </div>
+      <!-- Modal -->
+      <!-- <div class="modal fade" id="deleteData">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content confirmation_modal">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button> 
+                <h5 id="popup_msg"></h5>
+                <div class="confirmation">
+                    <button data-dismiss="modal" class="btn delete">Yes</button>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+
+      <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade  common-delet-modal" id="deleteData" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">      
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h5 id="popup_msg"></h5>
+      </div>
+      <div class="modal-footer">
+        <div class="confirmation">
+          <button type="button" class="btn" data-bs-dismiss="modal">No</button>
+          <button type="button" class="btn delete" >Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <!--End Modal-->
+      <div class="footer">
+        <div class="container">
+            <div class="footer-wrap">
+              <div class="logo-box">
+                <!-- <p> Powered by</p> -->
+                <a class="footer-logo" href="https://www.creativebuffer.com/">
+                  <img src="{% static 'images/footer-logo.png' %}?v={{CACHE_VERSION}}" alt="logo">
+                </a>        
+              </div>
+                <p>© Copyright 2023: Creative Buffer Consultancy Private Limited</p>                
+                <ul>
+                  <!-- <li><a href="{% url 'term' %}"  >Terms of Use</a></li> -->
+                  <li><a href="{% url 'term' %}" data-bs-toggle="modal" data-bs-target="#termofuse">Terms of Use</a></li>
+                </ul>                
+            </div>
+        </div>
+     </div>
+     <div class="cookiealert d-none" role="alert">
+      <div class="cookiealert-container">
+          <div class= " inner-wraps">
+            <p style="line-height: 26px;">
+  
+              We use cookies on our website to provide you with the best possible user experience. 
+              
+             {% comment %} Cookies 🍪 and other technologies are being used to improve your user-experience. Additional details
+             are available in our updated <a href="https://creativebuffer.com/privacy-policy" target="_blank">Privacy Policy</a></p> {% endcomment %}
+              <div class="info-btn">
+                {% comment %} <a href="{% url 'term' %}" class="morn-info">More Information</a> {% endcomment %}
+                <button type="button" class="btn btn-success btn-sm acceptcookies" aria-label="Close">Got It</button>
+              </div>
+          </div>
+      </div>
+     </div>
+          
+      <div class="modal fade" id="saveProjectPopup" tabindex="-1" role="dialog" aria-labelledby="saveProjectPopupTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Save as a project</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                <i class="far fa-times"></i>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="tab">
+                    <button class="tablinks active" onclick="openTab(event, 'new_project')">New project</button>
+                    <button class="tablinks" onclick="openTab(event, 'existing_project')">Existing project</button>
+                </div>
+                <form id="project_names">
+                <div id="new_project" class="tabcontent">
+                    <h4>Create a new project</h4>
+                    <div class="form-wrap"> 
+                    <div class="mb-3">
+                      <label for="blogTitle" class="form-label ">Project Name</label>
+                      <input  class="project_name form-control"  name="new_project" placeholder="Enter project name">
+                  </div>
+                  </div>
+                    <!-- <input type="text" class="project_name"  name="new_project" placeholder="Project name"> -->
+                </div>
+                <div id="existing_project" class="tabcontent" style="display: none;">
+                    <h4>Add in existing project</h4>
+                    <div class="form-wrap">
+                    <div class="mb-3">
+                      <label for="blogTitle" class="form-label ">Previous Projects</label>
+                      <select class="project_name form-control" name="existing_project"></select> 
+                  </div>
+                  </div>
+                    <!-- <select class="project_name form-control" name="existing_project"></select>  -->
+                </div>
+                <textarea id="selected_text" hidden/></textarea>
+                </form>
+            </div>
+            
+
+
+            <div class="modal-footer">
+             
+      
+                <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn save_as_project_btn save_as_project">Save</button>
+            
+            </div>
+          </div>
+        </div>
+      </div> 
+
+    <!-- Modal -->
+    <div class="modal fade" id="termofuse" tabindex="-1" role="dialog" aria-labelledby="termofuse" aria-hidden="true">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="staticBackdropLabel">Term of use</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+          </div>
+          <div class="modal-body">
+            <div class="scrollbar" id="style-4">
+              <div class="force-overflow">
+            <div class="content-box mb-2">
+              <div class="mb-4">            
+                  <p>Welcome to our platform, accessible at <a href="https://ai.creativebuffer.com/" target="_blank">https://ai.creativebuffer.com/</a>. The following
+                      terms and conditions ("Terms of Use") govern your use of our platform, including all services and
+                      products offered through our platform.</p>
+              </div>
+              <div class="mb-4">    
+                  <h4>Acceptance of Terms of Use</h4>
+                  <p>By using our platform, you agree to be bound by these Terms of Use and all applicable laws and
+                      regulations. If you do not agree with any of these terms, you are prohibited from using or accessing our
+                      platform. The materials contained in this platform are protected by applicable copyright and trademark
+                      law.</p>
+              </div>
+              <div class="mb-4">    
+                  <h4>Use of Platform</h4>
+                  <p>Our platform is intended for individuals who are at least 18 years of age or older. You may not use our
+                      platform for any illegal or unauthorized purpose. You must not transmit any worms or viruses or any code
+                      of a destructive nature.</p>
+              </div>
+              <div class="mb-2">    
+                  <h4>User Content</h4>
+                  <p>Our platform may allow users to upload, post or otherwise transmit content and materials. You retain all
+                      rights in your User Content and are solely responsible for the content of your User Content. You agree
+                      that you will not upload, post or otherwise transmit User Content that:</p>
+              </div>
+              <div class="mb-4">    
+                  <ul>
+                      <li>Infringes any patent, trademark, trade secret, copyright or other proprietary rights of any party.
+                      </li>
+                      <li>Contains any viruses, worms, spyware, adware, or other harmful code.</li>
+                      <li>Is defamatory, obscene, pornographic, or offensive.</li>
+                      <li>Promotes illegal activities or conduct that is abusive, threatening, harassing, or defamatory.</li>
+                      <li>Is otherwise in violation of these Terms of Use.</li>
+                      <li>We reserve the right to remove any User Content that we believe, in our sole discretion, violates
+                          these Terms of Use.</li>
+                  </ul>
+              </div>
+              <div class="mb-4">    
+                  <h4>Intellectual Property Rights</h4>
+                  <p>The content and materials on our platform, including but not limited to text, graphics, logos, images,
+                      audio and video, are protected by intellectual property rights, including but not limited to copyright
+                      and trademark laws. Content that is not created by the platform or its users, including but not limited
+                      to content that is owned, licensed, or otherwise provided by third-party providers.We are using third
+                      party APIs to get the data and present on our platform. We don’t take the responsibility that data will
+                      be accurate, as per expectation, plagiarism free etc.</p>
+              </div>
+              <div class="mb-4">    
+                  <h4>User Account</h4>
+                  <p>An individual account created by a user or business is to access and use the platform and its
+                  services.The actions and behaviors of users when using the platform, including but not limited to
+                  compliance with laws, regulations, and platform policies.</p>
+              </div>
+              <div class="mb-4">    
+                  <h4>Disclaimer of Warranties</h4>
+                  <p>Our platform is provided "as is" without warranty of any kind, either express or implied, including but
+                  not limited to the implied warranties of merchantability, fitness for a particular purpose, or
+                  non-infringement.</p>
+              </div>
+              <div class="mb-4">    
+                  <h4>Limitation of Liability</h4>
+                  <p>In no event shall we be liable for any damages (including, without limitation, damages for loss of data
+                      or profit, or due to business interruption) arising out of the use or inability to use our platform,
+                      even if we or an authorized representative has been notified orally or in writing of the possibility of
+                      such damage.</p>
+              </div>
+              <div class="mb-4">    
+                  <h4>Indemnification</h4>
+                  <p>You agree to indemnify, defend, and hold us and our affiliates, licensors, and service providers, and our
+                      and their respective officers, directors, employees, agents, successors, assigns, content providers, and
+                      other contractors harmless from and against any claims, damages, losses, liabilities, costs, and
+                      expenses (including reasonable attorneys' fees) arising from your use of our platform, your User
+                      Content, or your violation of these Terms of Use.</p>
+              </div>
+              <div class="mb-4">    
+                  <h4>Modifications to Terms of Use</h4>
+                  <p>We reserve the right, at our sole discretion, to modify or replace these Terms of Use at any time. If a
+                  revision is material, we will provide at least 30 days' notice prior to any new terms taking effect.
+                  What constitutes a material change will be determined at our sole discretion.</p>
+              </div>
+              <div class="mb-4">    
+                  <h4>Termination</h4>
+                  <p>We may, in our sole discretion, at any time terminate or suspend all or a portion of our platform, or
+                  your use. </p>
+              </div>
+              <div class="mb-4">    
+                <h4>Do not attempt to create, upload, or share images that are not G-rated or that could cause harm.</h4>
+                <ul>
+                    <li><strong>Hate:</strong> hateful symbols, negative stereotypes, comparing certain groups to animals/objects, or otherwise expressing or promoting hate based on identity.</li>
+                    <li><strong>Harassment:</strong> mocking, threatening, or bullying an individual.</li>
+                    <li><strong>Violence:</strong> violent acts and the suffering or humiliation of others.</li>
+                    <li><strong>Self-harm:</strong> suicide, cutting, eating disorders, and other attempts at harming oneself.</li>
+                    <li><strong>Sexual:</strong> nudity, sexual acts, sexual services, or content otherwise meant to arouse sexual excitement.</li>
+                    <li><strong>Shocking:</strong> bodily fluids, obscene gestures, or other profane subjects that may shock or disgust.</li>
+                    <li><strong>Illegal activity:</strong> drug use, theft, vandalism, and other illegal activities.</li>
+                    <li><strong>Deception:</strong> major conspiracies or events related to major ongoing geopolitical events.</li>
+                    <li><strong>Political:</strong> politicians, ballot-boxes, protests, or other content that may be used to influence the political process or to campaign.</li>
+                    <li><strong>Public and personal health:</strong> the treatment, prevention, diagnosis, or transmission of diseases, or people experiencing health ailments.</li>
+                    <li><strong>Spam:</strong> unsolicited bulk content.</li>
+                </ul>
+            </div>
+            <div class="mb-4">    
+              <h4>Don’t mislead your audience about AI involvement.</h4>
+              <ul>
+                  <li>When sharing your work, we encourage you to proactively disclose AI involvement in your work.</li>
+                  <li>You may remove the DALL·E signature if you wish, but you may not mislead others about the nature of the work. For example, you may not tell people that the work was entirely human generated or that the work is an unaltered photograph of a real event.</li>
+              </ul>
+            </div>
+            <div class="">    
+              <h4>Respect the rights of others.</h4>
+              <ul>
+                  <li>Do not upload images of people without their consent.</li>
+                  <li>Do not upload images to which you do not hold appropriate usage rights.</li>
+                  <li>Do not create images of public figures.</li>
+              </ul>
+            </div>
+          </div>
+          </div></div>
+        </div>
+          
+        </div>
+      </div>
+    </div>
+     <script>
+        token = document.getElementsByName("csrfmiddlewaretoken")[0].value;
+     </script>
+   </body>
+</html>

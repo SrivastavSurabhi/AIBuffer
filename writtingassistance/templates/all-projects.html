@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<div class="col-sm-12 banner_text text-center mt-5">   
+   <div class="all_projects">
+      
+      <table id="projects" width="100%">
+         <thead>
+            <tr><th>Sr. no.</th>
+            <th>Project name</th>
+            <th>Created date</th>
+            <th>Action</th>
+         </tr>
+         </thead>
+      </table>
+   </div>
+</div>
+
+<script src="{% static 'js/appScript/all_projects.js' %}?v={{CACHE_VERSION}}"></script>
+{% endblock content %}

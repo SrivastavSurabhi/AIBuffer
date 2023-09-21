@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+<div class="col-sm-12 banner_text text-center mt-5">   
+   <div class="project_detail">   
+   <table id="project_prompts" width="100%">   
+      <thead>
+         <tr>
+            <th>S. no.</th>
+            <th>Prompt name</th>
+            <th>Created date</th>
+            <th>Action</th>
+         </tr>
+      </thead>
+   </table>
+   </div>
+</div>
+<script src="{% static 'js/appScript/project-detail.js' %}?v={{CACHE_VERSION}}"></script>
+{% endblock content %}

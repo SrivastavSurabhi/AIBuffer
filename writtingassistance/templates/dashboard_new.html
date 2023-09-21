@@ -1,0 +1,802 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- <div class="col-sm-12 banner_text text-center mt-5">
+         {% comment %} <img src="https://creativebuffer.com/assets/images/cb/logo-main.png" alt="Girl in a jacket" width="100" height="50">
+         {% if session %}
+         <h1>Welcome {{session.userinfo.name}}!</h1>
+         <p><a href="{% url 'logout' %}">Logout</a></p>
+         {% else %}
+         <h1>Welcome Guest</h1>
+         <p><a href="{% url 'login' %}">Login</a></p>
+         {% endif %} {% endcomment %}
+         <h2>So, what exactly do you have in mind?</h2>
+         <h5>Begin with selecting the content type from the options below.</h5>
+      </div> -->
+<!-- <div class="col-sm-12 all_tabs_section mb-5 mt-5">
+         <div class="listing">
+            <ul>
+               <li><a data-target="all" class="active">All</a></li>
+               <li><a data-target="articleBlock" class="article_blog">Article and Blog</a></li>
+               <li><a data-target="socialMedia" class="social_media">Social Media</a></li>
+               <li><a data-target="writingData">Writing</a></li>
+               <li><a data-target="keywordResearch" class="keyword_research">Keyword Research</a></li>
+               <li><a data-target="ecommerceData">Ecommerce</a></li>
+               <li><a data-target="websiteData">Website</a></li>
+            </ul>
+         </div>
+      </div> -->
+<div class="col-sm-12 all_data mt-3">
+    <div class="row">
+        <div class="col-sm-12 headline mb-4">Popular Category</div>
+        <div class="col-lg-4 col-md-6 col-sm-12 single_block_active mb-4 popular_category">
+            <a data-target="articleBlock" id="article_blog">
+                <div class="inside">
+                    <div class="image"><img src="../static/images/article.svg"></div>
+                    <div class="data">
+                        <h6>Article and Blog</h6>
+                        <p>Write your dream SEO article short time.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 single_block_active mb-4 popular_category">
+            <a data-target="socialMedia" id="social_media">
+                <div class="inside">
+                    <div class="image"><img src="../static/images/social.svg"></div>
+                    <div class="data">
+                        <h6>Social Media</h6>
+                        <p>Write compelling detailed product</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 single_block_active mb-4 popular_category">
+            <a data-target="keywordResearch" id="keyword_research">
+                <div class="inside">
+                    <div class="image"><img src="../static/images/keyword.svg"></div>
+                    <div class="data">
+                        <h6>Keyword Research</h6>
+            </a>
+            <p>Pick your excet keyword for rank anything</p>
+        </div>
+    </div>
+    </a>
+</div>
+<div class="col-sm-12 headline_categories mb-4">All Topics</div>
+<!-- <div class="col-lg-4 col-md-6 col-sm-12 single_block AskMeAnything mb-4">
+   <a href="{% url 'ask_me_anything' %}">
+      <div class="inside">
+         <div class="image"><img src="../static/images/blog.svg"></div>
+         <div class="data">
+            <h6>Ask me anything</h6>
+            <p>What is in your mind.</p>
+         </div>
+      </div>
+   </a>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12 single_block articleBlock mb-4">
+   <a href="{% url 'blog' task='generator' %}">
+      <div class="inside">
+         <div class="image"><img src="../static/images/blog.svg"></div>
+         <div class="data">
+            <h6>Blog Generator</h6>
+            <p>Generator Blog for your website.</p>
+         </div>
+      </div>
+   </a>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12 single_block articleBlock mb-4">
+   <a href="{% url 'article' %}">
+      <div class="inside">
+         <div class="image"><img src="../static/images/article-g.svg"></div>
+         <div class="data">
+            <h6>Article Generator</h6>
+            <p>Generate more copies with article AI</p>
+         </div>
+      </div>
+   </a>
+</div>
+
+<div class="col-lg-4 col-md-6 col-sm-12 single_block socialMedia mb-4">
+   <a href="{% url 'insta' %}">
+      <div class="inside">
+         <div class="image"><img src="../static/images/instagram-new.png"></div>
+         <div class="data">
+            <h6>Instagram Captions Generator</h6>
+            <p>Catchy captions for your Instagram posts.</p>
+         </div>
+      </div>
+   </a>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12 single_block socialMedia mb-4">
+   <a href="{% url 'facebook_caption' %}">
+      <div class="inside">
+         <div class="image"><img src="../static/images/facebook.svg"></div>
+         <div class="data">
+            <h6>Facebook Caption Generator</h6>
+            <p>Generator facebook caption with AI.</p>
+         </div>
+      </div>
+   </a>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12 single_block socialMedia mb-4
+">
+   <a href="{% url 'tweet' %}">
+      <div class="inside">
+         <div class="image"><img src="../static/images/twitter.svg"></div>
+         <div class="data">
+            <h6>Tweet Generator</h6>
+            <p>Engage with your amazing followers.</p>
+         </div>
+      </div>
+   </a>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12 single_block socialMedia mb-4">
+   <a href="{% url 'youtube_vide_descr' %}">
+      <div class="inside">
+         <div class="image"><img src="../static/images/youtube.svg"></div>
+         <div class="data">
+            <h6>YouTube video description</h6>
+            <p>Genrate youtube video description</p>
+         </div>
+      </div>
+   </a>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12 single_block socialMedia mb-4">
+   <a href="{% url 'hashtags' %}">
+      <div class="inside">
+         <div class="image"><img src="../static/images/hash.svg"></div>
+         <div class="data">
+            <h6>Hashtag Generator</h6>
+            <p>Genrate hashtags for your post</p>
+         </div>
+      </div>
+   </a>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12 single_block writingData mb-4">
+   <a href="{% url 'content' %}">
+      <div class="inside">
+         <div class="image"><img src="../static/images/content.svg"></div>
+         <div class="data">
+            <h6>Content Rephrase</h6>
+            <p>Rephrase your content in different voice.</p>
+         </div>
+      </div>
+   </a>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12 single_block writingData mb-4">
+   <a href="{% url 'song_writer' %}">
+      <div class="inside">
+         <div class="image"><img src="../static/images/article-g.svg"></div>
+         <div class="data">
+            <h6>Song Generator</h6>
+            <p>Generate song with your few words.</p>
+         </div>
+      </div>
+   </a>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12 single_block socialMedia mb-4">
+   <a href="{% url 'youtube_video_topic_ideas' %}">
+      <div class="inside">
+         <div class="image"><img src="../static/images/youtube.svg"></div>
+         <div class="data">
+            <h6>YouTube video topic ideas </h6>
+            <p>Genrate ideas to create youtube videos.</p>
+         </div>
+      </div>
+   </a>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12 single_block ecommerceData mb-4">
+   <a href="{% url 'product' %}">
+      <div class="inside">
+         <div class="image"><img src="../static/images/blog.svg"></div>
+         <div class="data">
+            <h6>Product Description</h6>
+            <p>Write compelling detailed product</p>
+         </div>
+      </div>
+   </a>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12 single_block keywordResearch mb-4">
+   <a href="{% url 'seo_meta_desc' %}">
+      <div class="inside">
+         <div class="image"><img src="../static/images/google.png"></div>
+         <div class="data">
+            <h6>SEO Meta Description</h6>
+            <p>Your website for maximum visibility.</p>
+         </div>
+      </div>
+   </a>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12 single_block articleBlock mb-4">
+   <a href="{% url 'blog' task='ideas' %}">
+      <div class="inside">
+         <div class="image"><img src="../static/images/blog.svg"></div>
+         <div class="data">
+            <h6>Blog Idea</h6>
+            <p>Blog ideas generate more website traffic.</p>
+         </div>
+      </div>
+   </a>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12 single_block articleBlock mb-4">
+   <a href="{% url 'blog' task='conclusion' %}">
+      <div class="inside">
+         <div class="image"><img src="../static/images/blog.svg"></div>
+         <div class="data">
+            <h6>Blog conclusion</h6>
+            <p>Blog ideas generate more website traffic.</p>
+         </div>
+      </div>
+   </a>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12 single_block articleBlock mb-4">
+   <a href="{% url 'blog' task='intro' %}">
+      <div class="inside">
+         <div class="image"><img src="../static/images/blog.svg"></div>
+         <div class="data">
+            <h6>Blog intro</h6>
+            <p>Blog ideas generate more website traffic.</p>
+         </div>
+      </div>
+   </a>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12 single_block articleBlock mb-4">
+   <a href="{% url 'blog' task='outline' %}">
+      <div class="inside">
+         <div class="image"><img src="../static/images/blog.svg"></div>
+         <div class="data">
+            <h6>Blog outline</h6>
+            <p>Blog ideas generate more website traffic.</p>
+         </div>
+      </div>
+   </a>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12 single_block articleBlock mb-4">
+   <a href="{% url 'blog' task='title' %}">
+      <div class="inside">
+         <div class="image"><img src="../static/images/blog.svg"></div>
+         <div class="data">
+            <h6>Blog title</h6>
+            <p>Generate Blog title.</p>
+         </div>
+      </div>
+   </a>
+</div>
+{% comment %}
+<div class="col-lg-4 col-md-6 col-sm-12 single_block socialMedia mb-4">
+   <a href="{% url 'quora' %}">
+      <div class="inside">
+         <div class="image"><img src="../static/images/hash.svg"></div>
+         <div class="data">
+            <h6>Quora answers</h6>
+            <p>Genrate Quora answers</p>
+         </div>
+      </div>
+   </a>
+</div>
+{% endcomment %}
+{% comment %}
+<div class="col-lg-4 col-md-6 col-sm-12 single_block socialMedia mb-4">
+   <a href="{% url 'paragraph' %}">
+      <div class="inside">
+         <div class="image"><img src="../static/images/hash.svg"></div>
+         <div class="data">
+            <h6>Paragraph writer</h6>
+            <p>Genrate Paragraphs</p>
+         </div>
+      </div>
+   </a>
+</div>
+{% endcomment %}
+{% comment %}
+<div class="col-lg-4 col-md-6 col-sm-12 single_block socialMedia mb-4">
+   <a href="{% url 'socialpost' %}">
+      <div class="inside">
+         <div class="image"><img src="../static/images/hash.svg"></div>
+         <div class="data">
+            <h6>Engaging social post</h6>
+            <p>Genrate social post</p>
+         </div>
+      </div>
+   </a>
+</div>
+{% endcomment %}
+<div class="col-lg-4 col-md-6 col-sm-12 single_block socialMedia mb-4">
+   <a href="{% url 'youtube_video_title' %}">
+      <div class="inside">
+         <div class="image"><img src="../static/images/youtube.svg"></div>
+         <div class="data">
+            <h6>YouTube video title</h6>
+            <p>Genrate youtube video title</p>
+         </div>
+      </div>
+   </a>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12 single_block socialMedia mb-4">
+   <a href="{% url 'youtube_content_generator' %}">
+      <div class="inside">
+         <div class="image"><img src="../static/images/youtube.svg"></div>
+         <div class="data">
+            <h6>YouTube video content generator</h6>
+            <p>Genrate content for your youtube video</p>
+         </div>
+      </div>
+   </a>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12 single_block websiteData mb-4">
+   <a href="{% url 'copywriting' %}">
+      <div class="inside">
+         <div class="image"><img src="../static/images/content.svg"></div>
+         <div class="data">
+            <h6>Copywriting</h6>
+            <p>Copy write your content</p>
+         </div>
+      </div>
+   </a>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12 single_block websiteData mb-4">
+   <a href="{% url 'page_headline' %}">
+      <div class="inside">
+         <div class="image"><img src="../static/images/landing.svg"></div>
+         <div class="data">
+            <h6>Landing Page Headline</h6>
+            <p>A unique and memorable perfect headline.</p>
+         </div>
+      </div>
+   </a>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12 single_block socialMedia mb-4">
+   <a href="{% url 'facebook' %}">
+      <div class="inside">
+         <div class="image"><img src="../static/images/facebook.svg"></div>
+         <div class="data">
+            <h6>Facebook Ads</h6>
+            <p>Generate Facebook Ads</p>
+         </div>
+      </div>
+   </a>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12 single_block ecommerceData mb-4">
+   <a href="{% url 'amazon' task='description' %}">
+      <div class="inside">
+         <div class="image"><img src="../static/images/amazon.png"></div>
+         <div class="data">
+            <h6>Amazon Product Description</h6>
+            <p>Write compelling detailed product</p>
+         </div>
+      </div>
+   </a>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12 single_block ecommerceData mb-4">
+   <a href="{% url 'amazon' task='bullet_points' %}">
+      <div class="inside">
+         <div class="image"><img src="../static/images/amazon.png"></div>
+         <div class="data">
+            <h6>Amazon product bullet points</h6>
+            <p>Write compelling detailed product</p>
+         </div>
+      </div>
+   </a>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12 single_block ecommerceData mb-4">
+   <a href="{% url 'amazon' task='ad_headlines' %}">
+      <div class="inside">
+         <div class="image"><img src="../static/images/amazon.png"></div>
+         <div class="data">
+            <h6>Amazon Ad headline</h6>
+            <p>Write compelling detailed product</p>
+         </div>
+      </div>
+   </a>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12 single_block ecommerceData mb-4">
+   <a href="{% url 'amazon' task='title' %}">
+      <div class="inside">
+         <div class="image"><img src="../static/images/amazon.png"></div>
+         <div class="data">
+            <h6>Amazon Product title</h6>
+            <p>Write compelling detailed product</p>
+         </div>
+      </div>
+   </a>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12 single_block keywordResearch mb-4">
+   <a href="{% url 'generate_keyword' %}">
+      <div class="inside">
+         <div class="image"><img src="../static/images/blog.svg"></div>
+         <div class="data">
+            <h6>Generate Keywords</h6>
+            <p>Generate keywords for you.</p>
+         </div>
+      </div>
+   </a>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12 single_block writingData mb-4">
+   <a href="{% url 'kids_story' %}">
+      <div class="inside">
+         <div class="image"><img src="../static/images/blog.svg"></div>
+         <div class="data">
+            <h6>Kids story writer</h6>
+            <p>Writes exciting story for your kids</p>
+         </div>
+      </div>
+   </a>
+</div> -->
+</div>
+</div>
+<div class="container">
+    <div class="ch-masonry">
+        <div class="ch-masonry__item box-wrap box-1 bg-grey bg-1">
+            <div class="text-data">
+                <div class="image ">
+                    <img src="../static/images/blog.svg">
+                </div>
+                <div class="content">
+                    <h6>Blog Generator</h6>
+                    <p>Generator Blog for your website.</p>
+                </div>
+            </div>
+        </div>
+        <div class="ch-masonry__item box-wrap box-4 bg-black bg-2">
+            <div class="text-data">
+                <div class="image">
+                    <a href="#">
+                        <img src="../static/images/blog.svg">
+                    </a>
+                </div>
+                <div class="content">
+                    <h6>Article Generator</h6>
+                    <p>Generate more copies with article AI</p>
+                </div>
+            </div>
+        </div>
+        <div class="ch-masonry__item box-wrap box-2 bg-green  bg-3">
+            <div class="text-data">
+                <div class="image">
+                    <a href="#">
+                        <img class="insta-img" src="../static/images/instagram-new.png">
+                    </a>
+                </div>
+                <div class="content">
+                    <h6>Instagram Captions Generator</h6>
+                    <p>Catchy captions for your Instagram posts.</p>
+                </div>
+            </div>
+        </div>
+        <div class="ch-masonry__item box-wrap box-2  bg-grey bg-4">
+            <div class="text-data">
+                <div class="image">
+                    <a href="#">
+                        <img src="../static/images/facebook.svg">
+                    </a>
+                </div>
+                <div class="content">
+                    <h6>Facebook Caption Generator</h6>
+                    <p>Generator facebook caption with AI.</p>
+                </div>
+            </div>
+        </div>
+        <div class="ch-masonry__item box-wrap box-2 bg-grey bg-5">
+            <div class="text-data">
+                <div class="image">
+                    <a href="#">
+                        <img src="../static/images/twitter.svg">
+                    </a>
+                </div>
+                <div class="content">
+                    <h6>Tweet Generator</h6>
+                    <p>Engage with your amazing followers.</p>
+                </div>
+            </div>
+        </div>
+        <div class="ch-masonry__item box-wrap box-2 bg-black bg-6">
+            <div class="text-data">
+                <div class="image">
+                    <a href="#">
+                        <img src="../static/images/youtube.svg">
+                    </a>
+                </div>
+                <div class="content">
+                    <h6>YouTube video description</h6>
+                    <p>Genrate youtube video description</p>
+                </div>
+            </div>
+        </div>
+        <div class="ch-masonry__item box-wrap box-1 bg-green bg-7">
+            <div class="text-data">
+                <div class="image">
+                    <a href="#">
+                        <img src="../static/images/hash.svg">
+                    </a>
+                </div>
+                <div class="content">
+                    <h6>Hashtag Generator</h6>
+                    <p>Genrate hashtags for your post</p>
+                </div>
+            </div>
+        </div>
+        <div class="ch-masonry__item box-wrap box-4 bg-grey bg-8">
+            <div class="text-data">
+                <div class="image">
+                    <a href="#">
+                        <img src="../static/images/content.svg">
+                    </a>
+                </div>
+                <div class="content">
+                    <h6>Content Rephrase</h6>
+                    <p>Rephrase your content in different voice.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ch-masonry">
+        <div class="ch-masonry__item box-wrap box-1 bg-grey bg-9">
+            <div class="text-data">
+                <div class="image">
+                    <a href="#">
+                        <img src="../static/images/blog.svg">
+                    </a>
+                </div>
+                <div class="content">
+                    <h6>Song Generator</h6>
+                    <p>Generate song with your few words.</p>
+                </div>
+            </div>
+        </div>
+        <div class="ch-masonry__item box-wrap box-4 bg-black bg-10">
+            <div class="text-data">
+                <div class="image">
+                    <a href="#">
+                        <img src="../static/images/youtube.svg">
+                    </a>
+                </div>
+                <div class="content">
+                    <h6>YouTube video topic ideas </h6>
+                    <p>Genrate ideas to create youtube videos.</p>
+                </div>
+            </div>
+        </div>
+        <div class="ch-masonry__item box-wrap box-2 bg-green bg-11">
+            <div class="text-data">
+                <div class="image">
+                    <a href="#">
+                        <img src="../static/images/blog.svg">
+                    </a>
+                </div>
+                <div class="content">
+                    <h6>Product Description</h6>
+                    <p>Write compelling detailed product</p>
+                </div>
+            </div>
+        </div>
+        <div class="ch-masonry__item box-wrap box-2  bg-grey bg-12">
+            <div class="text-data">
+                <div class="image">
+                    <a href="#">
+                        <img class="google-img" src="../static/images/google.png">
+                    </a>
+                </div>
+                <div class="content">
+                    <h6>SEO Meta Description</h6>
+                    <p>Your website for maximum visibility.</p>
+                </div>
+            </div>
+        </div>
+        <div class="ch-masonry__item box-wrap box-2 bg-grey bg-13">
+            <div class="text-data">
+                <div class="image">
+                    <a href="#">
+                        <img src="../static/images/blog.svg">
+                    </a>
+                </div>
+                <div class="content">
+                    <h6>Blog Idea</h6>
+                    <p>Blog ideas generate more website traffic.</p>
+                </div>
+            </div>
+        </div>
+        <div class="ch-masonry__item box-wrap box-2 bg-black bg-14">
+            <div class="text-data">
+                <div class="image">
+                    <a href="#">
+                        <img src="../static/images/blog.svg">
+                    </a>
+                </div>
+                <div class="content">
+                    <h6>Blog conclusion</h6>
+                    <p>Blog ideas generate more website traffic.</p>
+                </div>
+            </div>
+        </div>
+        <div class="ch-masonry__item box-wrap box-1 bg-green bg-15">
+            <div class="text-data">
+                <div class="image">
+                    <a href="#">
+                        <img src="../static/images/blog.svg">
+                    </a>
+                </div>
+                <div class="content">
+                    <h6>Blog intro</h6>
+                    <p>Blog ideas generate more website traffic.</p>
+                </div>
+            </div>
+        </div>
+        <div class="ch-masonry__item box-wrap box-4 bg-grey bg-16">
+            <div class="text-data">
+                <div class="image">
+                    <a href="#">
+                        <img src="../static/images/blog.svg">
+                    </a>
+                </div>
+                <div class="content">
+                    <h6>Blog outline</h6>
+                    <p>Blog ideas generate more website traffic.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ch-masonry">
+        <div class="ch-masonry__item box-wrap box-1 bg-grey bg-17">
+            <div class="text-data">
+                <div class="image">
+                    <a href="#">
+                        <img src="../static/images/blog.svg">
+                    </a>
+                </div>
+                <div class="content">
+                    <h6>Blog title</h6>
+                    <p>Generate Blog title.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="ch-masonry__item box-wrap box-4 bg-black bg-18">
+            <div class="text-data">
+                <div class="image">
+                    <a href="#">
+                        <img src="../static/images/youtube.svg">
+                    </a>
+                </div>
+                <div class="content">
+                    <h6>YouTube video title</h6>
+                    <p>Genrate youtube video title</p>
+                </div>
+            </div>
+        </div>
+        <div class="ch-masonry__item box-wrap box-2 bg-green bg-19">
+            <div class="text-data">
+                <div class="image">
+                    <a href="#">
+                        <img src="../static/images/youtube.svg">
+                    </a>
+                </div>
+                <div class="content">
+                    <h6>YouTube video content generator</h6>
+                    <p>Genrate content for your youtube video</p>
+                </div>
+            </div>
+        </div>
+        <div class="ch-masonry__item box-wrap box-2 bg-grey bg-20">
+            <div class="text-data">
+                <div class="image">
+                    <a href="#">
+                        <img src="../static/images/content.svg">
+                    </a>
+                </div>
+                <div class="content">
+                    <h6>Copywriting</h6>
+                    <p>Copy write your content</p>
+                </div>
+            </div>
+        </div>
+        <div class="ch-masonry__item box-wrap box-2 bg-grey bg-21">
+            <div class="text-data">
+                <div class="image">
+                    <a href="#">
+                        <img src="../static/images/landing.svg">
+                    </a>
+                </div>
+                <div class="content">
+                    <h6>Landing Page Headline</h6>
+                    <p>A unique and memorable perfect headline.</p>
+                </div>
+            </div>
+        </div>
+        <div class="ch-masonry__item box-wrap box-2 bg-black bg-22">
+            <div class="text-data">
+                <div class="image">
+                    <a href="#">
+                        <img src="../static/images/facebook.svg">
+                    </a>
+                </div>
+                <div class="content">
+                    <h6>Facebook Ads</h6>
+                    <p>Generate Facebook Ads</p>
+                </div>
+            </div>
+        </div>
+        <div class="ch-masonry__item box-wrap box-1 bg-green bg-23">
+            <div class="text-data">
+                <div class="image">
+                    <a href="#">
+                        <img class="img-height" src="../static/images/amazon.png">
+                    </a>
+                </div>
+                <div class="content">
+                    <h6>Amazon Product Description</h6>
+                    <p>Write compelling detailed product</p>
+                </div>
+            </div>
+        </div>
+        <div class="ch-masonry__item box-wrap box-4 bg-grey bg-24">
+            <div class="text-data">
+                <div class="image">
+                    <a href="#">
+                        <img class="img-height" src="../static/images/amazon.png">
+                    </a>
+                </div>
+                <div class="content">
+                    <h6>Amazon product bullet points</h6>
+                    <p>Write compelling detailed product</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ch-masonry">
+        <div class="ch-masonry__item box-wrap box-2 bg-grey bg-25">
+            <div class="text-data">
+                <div class="image">
+                    <a href="#">
+                        <img class="img-height" src="../static/images/amazon.png">
+                    </a>
+                </div>
+                <div class="content">
+                    <h6>Amazon Ad headline</h6>
+                    <p>Write compelling detailed product</p>
+                </div>
+            </div>
+        </div>
+        <div class="ch-masonry__item box-wrap box-2 bg-black bg-26">
+            <div class="text-data">
+                <div class="image">
+                    <a href="#">
+                        <img class="img-height" src="../static/images/amazon.png">
+                    </a>
+                </div>
+                <div class="content">
+                    <h6>Amazon Product title</h6>
+                    <p>Write compelling detailed product</p>
+                </div>
+            </div>
+        </div>
+        <div class="ch-masonry__item box-wrap box-2 bg-green bg-27">
+            <div class="text-data">
+                <div class="image">
+                    <a href="#">
+                        <img src="../static/images/blog.svg">
+                    </a>
+                </div>
+                <div class="content">
+                    <h6>Generate Keywords</h6>
+                    <p>Generate keywords for you.</p>
+                </div>
+            </div>
+        </div>
+        <div class="ch-masonry__item box-wrap box-2 bg-black bg-28">
+            <div class="text-data">
+                <div class="image">
+                    <a href="#">
+                        <img src="../static/images/blog.svg">
+                    </a>
+                </div>
+                <div class="content">
+                    <h6>Kids story writer</h6>
+                    <p>Writes exciting story for your kids</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock content %}

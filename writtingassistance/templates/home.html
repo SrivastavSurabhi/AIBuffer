@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    {% comment %} <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script> {% endcomment %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+    <script src="{% static 'js/appScript/common.js' %}"></script>
+    <link href="{% static 'css/common.css' %}" rel="stylesheet">
+    <script src="{% static 'js/appScript/constants.js' %}"></script>
+    <script src="{% static 'js/appScript/text.js' %}"></script>
+    <script src="{% static 'js/appScript/images.js' %}"></script>
+</head>
+<body>
+    <div class="fixed_loading">
+        <div class="fixed_loading_inset">
+            <div class="spinner">
+                <div class="rect1"></div>
+                <div class="rect2"></div>
+                <div class="rect3"></div>
+                <div class="rect4"></div>
+                <div class="rect5"></div>
+              </div>
+        </div>
+    </div>
+
+    {% csrf_token %}
+    <div class="wrapper">
+        <div class="banner_section">
+          <video autoplay muted loop>
+            <source src="../static/images/video.mp4" type="video/mp4">
+          </video>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12 banner_headline text-center">
+                  <h1 class="text-white">Select what you want to do with your text.</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="innerwrapper">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-12 mb-2">
+                      <div class="tabs_lists">
+                        <div class="operation text_generation active">Text Generator</div>
+                        <div class="operation image_generation">Image Generator</div>                       
+                      </div>
+                    </div>
+
+                    <div class="col-lg-12 mb-2">
+                      <div class="text_options">
+                        <div class="text_operation rewrite active">Rewrite</div>
+                        <div class="text_operation continue">Continue writing</div>
+                        <div class="text_operation rephrase">Rephrase in other Language</div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-12 mb-2">
+                      <div class="image_options d-none">                        
+                        <div class="image_operation create_image">Create image using text</div>                        
+                        <div class="image_operation create_variation">Create image variations</div>
+                        <div class="image_operation edit_image">Edit your image using caption</div>
+                      </div>
+                    </div>
+
+                    <div class="col-12 rewrite-block mt-4">
+                      <div class="custom_check">
+                        <div class="custom-control">
+                          <input type="radio" id="line_to_line" value="line_to_line" name="rewrite" class="custom-control-input" checked>
+                          <label class="custom-control-label" for="line_to_line">Line to line</label>
+                        </div>
+                        <div class="custom-control">
+                          <input type="radio" id="paragraph" value="paragraph" name="rewrite" class="custom-control-input">
+                          <label class="custom-control-label" for="paragraph">Paragraph</label>
+                        </div>
+                      </div>
+                      <div class="notes mt-2 mb-2">*Note: in line to line you can only enter 30 characters.</div>
+                    </div>
+
+                    <div class="col-12 d-none continue-writing-block mt-4">
+                      <div class="custom_check">
+                        <div class="custom-control">
+                          <input type="radio" id="words_count" value="words_count" name="continue-writing" class="custom-control-input" checked>
+                          <label class="custom-control-label" for="words_count">Word</label>
+                        </div>
+                        <div class="custom-control">
+                          <input type="radio" id="lines_count" value="lines_count" name="continue-writing" class="custom-control-input">
+                          <label class="custom-control-label" for="lines_count">Lines</label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-12 quantity d-none mt-4">
+                      <div class="inside_form">
+                        <input type="number" class="count form-control" placeholder="Please select quantity" required>
+                      </div>
+                      <span class="count_error d-none">This is required*</span>
+                    </div>
+
+                    <div class="select_image d-none col-md-4">
+                        <input type="file" id="choosen_image" accept="image/*" >
+                        <p>Note: Must be a valid PNG file, less than 4MB, and square.</p>
+                    </div>
+
+                    <div class="col-sm-12 d-none rephrase-block mt-4">
+                      <div class="inside_form">
+                        <select class="form-select selected_language" aria-label="Default select example" name="selected_language">
+                          <option selected>Select language.</option>
+                          <option value="hindi">Hindi</option>
+                          <option value="bengali">Italian</option>
+                          <option value="punjabi">Punjabi</option>
+                          <option value="german">German</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-4 mb-5 form_field_area">
+                        <h3>Enter your Text</h3>
+                        <div class="form-group field_area">
+                          <textarea class="form-control query-text" name="text" maxlength=30></textarea>
+                        </div>
+                        <div class="form-group form_cta mt-3">
+                          <button type="button" id="submit" class="btn btn-success">Submit</button>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 result-block d-none">
+                      <h3>Your result</h3>
+                        <div class="form-group">
+                            <textarea class="form-control response" name="text"></textarea>                           
+                        </div>                        
+                        <div class="col-12 export-block">
+                          Export in :
+                          <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="pdf" value="pdf" name="export" class="custom-control-input">
+                            <label class="custom-control-label" for="pdf">PDF</label>
+                          </div>                          
+                          <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="csv" value="csv" name="export" class="custom-control-input">
+                            <label class="custom-control-label" for="csv">CSV</label>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="form-group image-area d-none">
+                      <h3>Your result</h3>
+                        <div id="result_img">                             
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

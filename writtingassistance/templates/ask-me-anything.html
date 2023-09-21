@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<div class="mt-4 askme-sect">
+    <!-- <h1 class="mt-2">Ask me anything</h1> -->
+    <div class="text-outer-wrap serchbox">
+        <div class="text-wrap search_area">
+            <div class="logo ball"><img src="../static/images/ai-icon.png"></div>
+            <div class="textareaposition">
+                <textarea class="form-control search_box centered-box" placeholder=""></textarea>
+                <button class="search_btn search_btn_small btn">
+                    <i class="far fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="display_section center" style="top:0px;" id="display_section">
+    </div>
+    <div class="text-outer-wrap bigsearch d-none">
+        
+        <div class="text-wrap search_area">
+            <div><button class='btn stop-generating mb-3 d-none'>Stop Generating</button></div>
+            <div><button class='btn regenerate mb-3 d-none'>Regenerate response</button></div>
+            <div class="outerbox">
+            <div class="logo"><img src="../static/images/ai-icon.png"></div>
+            <div class="textareaposition">
+                <textarea class="form-control search_box" placeholder=""></textarea>
+                <button class="search_btn_large search_btn btn">
+                    <i class="far fa-search"></i>
+                </button>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    token = $("[name='csrfmiddlewaretoken']").val();
+    var interval = 0;
+    let scrollIntervalId = 0;
+    let autoScroll = false;
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+    integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+<script src="{% static 'js/appScript/ask_me_anything.js' %}?v={{CACHE_VERSION}}"></script>
+{% endblock content %}

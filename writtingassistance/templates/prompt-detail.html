@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+<div class="col-sm-12 banner_text text-center mt-5">   
+   <div class="mt-5 project_detail">
+<!--{{prompt}}-->
+
+   {% comment %} <table id="projects">
+      <thead>
+         <tr>
+            <th>S. no.</th>
+            <th>Prompt name</th>
+         </tr>
+      </thead>
+      <tbody>
+         {% for prompt in prompts %}
+         <tr>
+            <td>{{forloop.counter}}</td>
+            <td><a href="{% url 'prompt_detail' prompt.promptId %}">{{prompt.promptId__promptName}}</a></td>
+         </tr>
+         {% endfor %}
+      </tbody>
+   </table> {% endcomment %}
+
+{% comment %} {% for key, value in prompt.items %}
+       <p>{{key}} : {{value}}</p>
+{% endfor %}
+
+<ul>
+    {% for res in response %}
+    <li>{{res.response}}</li>
+{% endfor %}
+</ul> {% endcomment %}
+
+   </div>
+</div>
+
+<script src="{% static 'js/appScript/all_projects.js' %}?v={{CACHE_VERSION}}"></script>
+{% endblock content %}

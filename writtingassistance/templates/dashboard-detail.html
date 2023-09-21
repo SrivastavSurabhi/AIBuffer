@@ -1,0 +1,1008 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="inner-page_section">
+    <div class="row">
+    <div class="col-lg-4 col-md-12 col-sm-12 sidebar_section mt-5">
+        <div class="inside_section">
+            <div class="row">
+                <!-- <div class="col-sm-12 back"><a href="{% url 'dashboard' %}" class="btn">Back</a></div> -->
+
+                {% if category == 'blog_intro' %}
+                    {% if subcategory == 'generator' %}
+                    <div class="sidebar_solo_block w-100 blog_intro">
+                        <div class="col-sm-12 title">Blog Generator</div>
+                        <div class="col-sm-12 subtitle">Write a Blog.</div>
+                        <div class="col-sm-12 form">
+                            <form id="prompt_form" action="{% url 'blog' task='generator' %}">
+                                <div class="mb-3 select_language">
+                                    <label for="language" class="form-label ">Select language*</label>
+                                    <select class="form-control language" id="language" name="language"></select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="category" class="form-label ">Select Category*</label>
+                                    <select class="form-control category" id="category" name="category"></select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="blogTitle" class="form-label ">Title of your blog*</label>
+                                    <input type="text" class="form-control blogtitle" name="title" id="blogTitle">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="keyword" class="form-label ">Targeted Keywords*</label>
+                                    <input type="text" class="form-control keyword" id="keyword" name="keywords"></input>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="quantity" class="form-label ">Enter how many word you want?</label>
+                                    <input type="number" class="form-control quantity" id="quantity" max="500"></input>
+                                </div>
+                                {% comment %} <div class="mb-3">
+                                    <label for="blogDescription" class="form-label ">What is your blog post about?</label>
+                                    <textarea type="text" class="form-control blogdescription description"
+                                        id="blogDescription"></textarea>
+                                </div> {% endcomment %}
+                                <div class="mb-3">
+                                    <label for="tune" class="form-label ">What Tone of Blog you want?*</label>
+                                    <select class="form-control tune" id="tune" name="tune">
+                                        <option selected disabled />Select Tone</option>
+                                        <option>Profesional</option>
+                                        <option>Casual</option>
+                                        <option>Friendly</option>
+                                        <option>Confident</option>
+                                        <option>Straight forward</option>                                        
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if subcategory == 'idea' %}
+                    <div class="sidebar_solo_block w-100 blog_intro">
+                        <div class="col-sm-12 title">Blog Ideas</div>
+                        <div class="col-sm-12 subtitle">Write ideas for your Blog.</div>
+                        <div class="col-sm-12 form">
+                            <form id="prompt_form" action="{% url 'blog' task='idea' %}">
+                                <div class="mb-3 select_language">
+                                    <label for="language" class="form-label ">Select language*</label>
+                                    <select class="form-control language" id="language" name="language"></select>
+                                </div>
+                                {% comment %} <div class="mb-3">
+                                    <label for="quantity" class="form-label ">How many ideas you want to generate?*</label>
+                                    <input type="number" class="form-control quantity" id="quantity" name="ideas"></input>
+                                </div> {% endcomment %}
+                                <div class="mb-3">
+                                    <label for="blogDescription" class="form-label ">Tell me something specific*</label>
+                                    <textarea type="text" class="form-control blogdescription" id="blogDescription"
+                                        name="description"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if subcategory == 'conclusion' %}
+                    <div class="sidebar_solo_block w-100 blog_intro">
+                        <div class="col-sm-12 title">Blog Conclusion</div>
+                        <div class="col-sm-12 subtitle">Write an conclusion that will entice your visitors to read more
+                            about your Blog.</div>
+                        <div class="col-sm-12 form">
+                            <form id="prompt_form" action="{% url 'blog' task='conclusion' %}">
+                                <div class="mb-3 select_language">
+                                    <label for="language" class="form-label ">Select language*</label>
+                                    <select class="form-control language" id="language" name="language"></select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="category" class="form-label ">Select Category*</label>
+                                    <select class="form-control category" id="category" name="category"></select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="blogTitle" class="form-label ">Title of your blog*</label>
+                                    <input type="text" class="form-control blogtitle" id="blogTitle" name="title">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="keyword" class="form-label ">Targeted Keyword*</label>
+                                    <input type="text" class="form-control keyword" id="keyword" name="keywords"></input>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="quantity" class="form-label ">Enter how many word you want?</label>
+                                    <input type="number" class="form-control quantity" id="quantity" max="500"></input>
+                                </div>
+                                {% comment %} <div class="mb-3">
+                                    <label for="blogDescription" class="form-label ">What is your blog post about?</label>
+                                    <textarea type="text" class="form-control blogdescription description"
+                                        id="blogDescription"></textarea>
+                                </div> {% endcomment %}
+                                <div class="mb-3">
+                                    <label for="tune" class="form-label ">What Tone of Blog you want?*</label>
+                                    <select class="form-control tune" id="tune" name="tune">
+                                        <option selected disabled />Select Tone</option>
+                                        <option>Profesional</option>
+                                        <option>Casual</option>
+                                        <option>Friendly</option>
+                                        <option>Confident</option>
+                                        <option>Straight forward</option>                                        
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if subcategory == 'intro' %}
+                    <div class="sidebar_solo_block w-100 blog_intro">
+                        <div class="col-sm-12 title">Blog Intro</div>
+                        <div class="col-sm-12 subtitle">Write an intro that will entice your visitors to read more about
+                            your Blog.</div>
+                        <div class="col-sm-12 form">
+                            <form id="prompt_form" action="{% url 'blog' task='intro' %}">
+                                <div class="mb-3 select_language">
+                                    <label for="language" class="form-label ">Select language*</label>
+                                    <select class="form-control language" id="language" name="language"></select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="category" class="form-label ">Select Category*</label>
+                                    <select class="form-control category" id="category" name="category">
+
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="blogTitle" class="form-label ">Title of your blog*</label>
+                                    <input type="text" class="form-control blogtitle" id="blogTitle" name="title">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="keyword" class="form-label ">Targeted Keyword*</label>
+                                    <input type="text" class="form-control keyword" id="keyword" name="keywords"></input>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="quantity" class="form-label ">Enter how many word you want?</label>
+                                    <input type="number" class="form-control quantity" id="quantity" max="500"></input>
+                                </div>
+                                {% comment %} <div class="mb-3">
+                                    <label for="blogDescription" class="form-label ">What is your blog post about?</label>
+                                    <textarea type="text" class="form-control blogdescription description"
+                                        id="blogDescription"></textarea>
+                                </div> {% endcomment %}
+                                <div class="mb-3">
+                                    <label for="tune" class="form-label ">What Tone of Blog you want?*</label>
+                                    <select class="form-control tune" id="tune" name="tune">
+                                        <option selected disabled />Select Tone</option>
+                                        <option>Profesional</option>
+                                        <option>Casual</option>
+                                        <option>Friendly</option>
+                                        <option>Confident</option>
+                                        <option>Straight forward</option>                                        
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if subcategory == 'outline' %}
+                    <div class="sidebar_solo_block w-100 blog_intro">
+                        <div class="col-sm-12 title">Blog Outline</div>
+                        <div class="col-sm-12 subtitle">Write an outline that will entice your visitors to read more about
+                            your Blog.</div>
+                        <div class="col-sm-12 form">
+                            <form id="prompt_form" action="{% url 'blog' task='outline' %}">
+                                <div class="mb-3 select_language">
+                                    <label for="language" class="form-label ">Select language*</label>
+                                    <select class="form-control language" id="language" name="language"></select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="category" class="form-label ">Select Category*</label>
+                                    <select class="form-control category" id="category" name="category"></select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="blogTitle" class="form-label ">Title of your blog*</label>
+                                    <input type="text" class="form-control blogtitle" id="blogTitle" name="title">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="keyword" class="form-label ">Targeted Keyword*</label>
+                                    <input type="text" class="form-control keyword" id="keyword" name="keywords"></input>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="quantity" class="form-label ">Enter how many word you want?</label>
+                                    <input type="number" class="form-control quantity" id="quantity" max="500"></input>
+                                </div>
+                                {% comment %} <div class="mb-3">
+                                    <label for="blogDescription" class="form-label ">What is your blog post about?</label>
+                                    <textarea type="text" class="form-control blogdescription description"
+                                        id="blogDescription"></textarea>
+                                </div> {% endcomment %}
+                                <div class="mb-3">
+                                    <label for="tune" class="form-label ">What Tone of Blog you want?*</label>
+                                    <select class="form-control tune" id="tune" name="tune">
+                                        <option selected disabled />Select Tone</option>
+                                        <option>Profesional</option>
+                                        <option>Casual</option>
+                                        <option>Friendly</option>
+                                        <option>Confident</option>
+                                        <option>Straight forward</option>                                        
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if subcategory == 'title' %}
+                    <div class="sidebar_solo_block w-100 blog_intro">
+                        <div class="col-sm-12 title">Blog Title</div>
+                        <div class="col-sm-12 subtitle">Write an title that will entice your visitors to read more about
+                            your Blog.</div>
+                        <div class="col-sm-12 form">
+                            <form id="prompt_form" action="{% url 'blog' task='title' %}">
+                                <div class="mb-3 select_language">
+                                    <label for="language" class="form-label ">Select language*</label>
+                                    <select class="form-control language" id="language" name="language"></select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="category" class="form-label ">Select Category*</label>
+                                    <select class="form-control category" id="category" name="category">
+
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="keyword" class="form-label ">Targeted Keyword*</label>
+                                    <input type="text" class="form-control keyword" id="keyword" name="keywords"></input>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="blogDescription" class="form-label ">What is your blog post about?</label>
+                                    <textarea type="text" class="form-control blogdescription description" id="blogDescription"
+                                        ></textarea>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endif %}
+                {% if category == 'tweet_generator' %}
+                    <div class="sidebar_solo_block w-100 tweet_generator">
+                        <div class="col-sm-12 title">Tweet Generator</div>
+                        <div class="col-sm-12 subtitle">Don't know what to tweet? Get ideas for tweets that will engage your
+                            followers.</div>
+                        <div class="col-sm-12 form">
+                            <form id="prompt_form" action="{% url 'tweet' %}">
+                                <div class="mb-3 select_language">
+                                    <label for="language" class="form-label ">Select language*</label>
+                                    <select class="form-control language" id="language" name="language"></select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="tweetDescription" class="form-label ">What is this tweet about?*</label>
+                                    <textarea type="text" class="form-control tweetdescription" id="tweetDescription"
+                                        name="description"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if category == 'hashtags_generator' %}
+                    <div class="sidebar_solo_block w-100 hashtags_generator">
+                        <div class="col-sm-12 title">Hashtag Generator</div>
+                        <div class="col-sm-12 subtitle">Create hashtags for your posts</div>
+                        <div class="col-sm-12 form">
+                            <form id="prompt_form" action="{% url 'hashtags' %}">
+                                <div class="mb-3 select_language">
+                                    <label for="language" class="form-label ">Select language*</label>
+                                    <select class="form-control language" id="language" name="language"></select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="hashtgsDescription" class="form-label ">What is this hastag about?*</label>
+                                    <textarea type="text" class="form-control hashtgsdescription" id="hashtgsDescription"
+                                        name="description"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if category == 'youtube_title_generator' %}
+                    <div class="sidebar_solo_block w-100 youtube_title_generator">
+                        <div class="col-sm-12 title">YouTube Video Title</div>
+                        <div class="col-sm-12 subtitle">Can not be able to genrate title for your youtube video? Get ideas
+                            from here</div>
+                        <div class="col-sm-12 form">
+                            <form id="prompt_form" action="{% url 'youtube_video_title' %}">
+                                <div class="mb-3 select_language">
+                                    <label for="language" class="form-label ">Select language*</label>
+                                    <select class="form-control language" id="language" name="language"></select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="youtubeVideoTitle" class="form-label ">Tell me about your video I will
+                                        generate title for you*</label>
+                                    <textarea type="text" class="form-control youtube_video_title" id="youtubeVideoTitle"
+                                        name="description"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if category == 'youtube_descr_generator' %}
+                    <div class="sidebar_solo_block w-100 youtube_descr_generator">
+                        <div class="col-sm-12 title">YouTube Video Description</div>
+                        <div class="col-sm-12 subtitle">Create description for your Youtube videos</div>
+                        <div class="col-sm-12 form">
+                            <form id="prompt_form" action="{% url 'youtube_vide_descr' %}">
+                                <div class="mb-3 select_language">
+                                    <label for="language" class="form-label ">Select language*</label>
+                                    <select class="form-control language" id="language" name="language"></select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="quantity" class="form-label ">Enter how many word you want?</label>
+                                    <input type="number" class="form-control quantity" id="quantity" max="500"></input>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="youtubeTitle" class="form-label ">Title of youtube video*</label>
+                                    <input type="text" class="form-control youtubetitle" id="youtubeTitle" name="title">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="youtubeDescr" class="form-label ">Tell me something about your
+                                        video*</label>
+                                    <textarea type="text" class="form-control youtubedescr" id="youtubeDescr"
+                                        name="description"></textarea>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if category == 'youtube_ideas_generator' %}
+                    <div class="sidebar_solo_block w-100 youtube_ideas_generator">
+                        <div class="col-sm-12 title">YouTube Video Topic Ideas</div>
+                        <div class="col-sm-12 subtitle">Create ideas for your youtube video</div>
+                        <div class="col-sm-12 form">
+                            <form id="prompt_form" action="{% url 'youtube_video_topic_ideas' %}">
+                                <div class="mb-3 select_language">
+                                    <label for="language" class="form-label ">Select language*</label>
+                                    <select class="form-control language" id="language" name="language"></select>
+                                </div>
+                                {% comment %} <div class="mb-3">
+                                    <label for="youtubeVideoTopicIdeas" class="form-label ">How many ideas you want to
+                                        generate?*</label>
+                                    <input type="number" class="form-control youtube_video_topic_ideas"
+                                        id="youtubeVideoTopicIdeas" name="ideas">
+                                </div> {% endcomment %}
+                                <div class="mb-3">
+                                    <label for="description" class="form-label ">Tell me something specific*</label>
+                                    <textarea type="text" class="form-control description" id="description"
+                                        name="description"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if category == 'youtube_content_generator' %}
+                    <div class="sidebar_solo_block w-100 youtube_content_generator">
+                        <div class="col-sm-12 title">YouTube Video Content Generator</div>
+                        <div class="col-sm-12 subtitle">Generate content for your youtube videos</div>
+                        <div class="col-sm-12 form">
+                            <form id="prompt_form" action="{% url 'youtube_content_generator' %}">
+                                <div class="mb-3 select_language">
+                                    <label for="language" class="form-label ">Select language*</label>
+                                    <select class="form-control language" id="language" name="language"></select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="quantity" class="form-label ">How many words you want to generate?</label>
+                                    <input type="number" class="form-control quantity" id="quantity">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="description" class="form-label ">Tell me about your video*</label>
+                                    <textarea type="text" class="form-control description" id="description"
+                                        name="description"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if category == 'song_writer' %}
+                <div class="sidebar_solo_block w-100 song_writer">
+                    <div class="col-sm-12 title">Song Generator</div>
+                    <div class="col-sm-12 subtitle">The smartest tool to write songs.
+                        You can generate songs according to your mood and feelings. Let's try it..</div>
+                    <div class="col-sm-12 form">
+                        <form id="prompt_form" action="{% url 'song_writer' %}">
+                            <div class="mb-3 select_language">
+                                <label for="language" class="form-label ">Select language*</label>
+                                <select class="form-control language" id="language" name="language"></select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="quantity" class="form-label ">Enter how many word you want?</label>
+                                <input type="number" class="form-control quantity" id="quantity" max="500">
+                            </div>
+                            <div class="mb-3">
+                                <label for="genre" class="form-label ">What type of song you want?*</label>
+                                <select class="form-control genre" id="genre" name="genre">
+                                    <option selected disabled />Select Genere</option>
+                                    <option>Pop</option>
+                                    <option>Love</option>
+                                    <option>Classical</option>
+                                    <option>Disco</option>
+                                    <option>Rock</option>
+                                    <option>Patriotic</option>
+                                    <option>Gazals</option>
+                                    <option>Devotional</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="mood" class="form-label ">What's your mood?*</label>
+                                <select class="form-control mood" id="mood" name="mood">
+                                    <option selected disabled />Select mood</option>
+                                    <option>Happy</option>
+                                    <option>Sad</option>
+                                    <option>Romantic</option>
+                                    <option>Fuzzy</option>
+                                    <option>Chill</option>
+                                    <option>Sleep</option>
+                                    <option>Alone</option>
+                                    <option>Energetic</option>
+                                    <option>Calm</option>
+                                </select>
+                            </div>
+
+                                <div class="mb-3">
+                                    <label for="song_description" class="form-label ">Tell me something about your
+                                        song*</label>
+                                    <textarea type="text" class="form-control song_description" id="song_description"
+                                        name="description"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if category == 'content_generator' %}
+                    <div class="sidebar_solo_block w-100 content_generator">
+                        <div class="col-sm-12 title">Content Rephrase</div>
+                        <div class="col-sm-12 subtitle">The smartest tool to rewrite articles or any content.
+                            The content is split into different sections that you can rewrite individually.</div>
+                        <div class="col-sm-12 form">
+                            <form id="prompt_form" action="{% url 'content' %}">
+                                <div class="mb-3 select_language">
+                                    <label for="language" class="form-label ">Select language*</label>
+                                    <select class="form-control language" id="language" name="language"></select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="rewrite" class="form-label ">What would you like to rewrite?*</label>
+                                    <textarea type="text" rows="5" class="form-control rewrite" id="rewrite"
+                                        name="description"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if category == 'copywrite_generator' %}
+                <div class="sidebar_solo_block w-100 copywrite_generator">
+                    <div class="col-sm-12 title">Copywriting</div>
+                    <div class="col-sm-12 subtitle">The smartest tool to copywrite content.
+                        Write copywrite for your product.
+                    </div>
+                    <div class="col-sm-12 form">
+                        <form id="prompt_form" action="{% url 'content' %}">
+                            <div class="mb-3 select_language">
+                                <label for="language" class="form-label ">Select language*</label>
+                                <select class="form-control language" id="language" name="language"></select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="blogTitle" class="form-label ">Company Name</label>
+                                <input type="text" class="form-control company_name" id="company_name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="copywrite" class="form-label ">What would you like to copywrite?*</label>
+                                <textarea type="text" class="form-control copywrite" id="copywrite"
+                                    name="description"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    </div>
+                {% endif %}
+                {% if category == 'article_generator' %}
+                    <div class="sidebar_solo_block w-100 article_generator">
+                        <div class="col-sm-12 title">Article Generator</div>
+                        <div class="col-sm-12 subtitle">Turn a title and outline into a long and engaging article.</div>
+                        <div class="col-sm-12 form">
+                            <form id="prompt_form" action="{% url 'article' %}">
+                                <div class="mb-3 select_language">
+                                    <label for="language" class="form-label ">Select language*</label>
+                                    <select class="form-control language" id="language" name="language"></select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="quantity" class="form-label ">Enter how many word you want?</label>
+                                    <input type="number" class="form-control quantity" id="quantity" max="500"></input>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="articleTitle" class="form-label ">Title of your article</label>
+                                    <input type="text" class="form-control articletitle" id="articleTitle" name="title">
+                                </div>
+
+                                {% comment %} <div class="mb-3">
+                                    <label for="description" class="form-label ">Description about your Article*</label>
+                                    <textarea type="text" class="form-control description" id="description"
+                                        name="description"></textarea>
+                                </div> {% endcomment %}
+                                <div class="mb-3">
+                                    <label for="tune" class="form-label ">What Tone of Blog you want?*</label>
+                                    <select class="form-control tune" id="tune" name="tune">
+                                        <option selected disabled />Select Tone</option>
+                                        <option>Profesional</option>
+                                        <option>Casual</option>
+                                        <option>Friendly</option>
+                                        <option>Confident</option>
+                                        <option>Straight forward</option>                                        
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if category == 'product_description' %}
+                    <div class="sidebar_solo_block w-100 product_description">
+                        <div class="col-sm-12 title">Product Description</div>
+                        <div class="col-sm-12 subtitle">Write the description about your product and why it's worth
+                            purchasing.</div>
+                        <div class="col-sm-12 form">
+                            <form id="prompt_form" action="{% url 'product' %}">
+                                <div class="mb-3 select_language">
+                                    <label for="language" class="form-label ">Select language*</label>
+                                    <select class="form-control language" id="language" name="language"></select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="quantity" class="form-label ">Enter how many word you want?</label>
+                                    <input type="number" class="form-control quantity" id="quantity" max="500"></input>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="productTitle" class="form-label ">Product Name</label>
+                                    <input type="text" class="form-control producttitle" id="productTitle" name="title">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="description" class="form-label ">Product Description*</label>
+                                    <textarea type="text" class="form-control description" id="description"
+                                        name="description"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if category == 'amazon_product' %}
+                    {% if subcategory == 'description' %}
+                        <div class="sidebar_solo_block w-100 amazon_product">
+                            <div class="col-sm-12 title">Amazon Product Description</div>
+                            <div class="col-sm-12 subtitle">Write the description about your product and why it's worth
+                                purchasing.</div>
+                            <div class="col-sm-12 form">
+                                <form id="prompt_form" action="{% url 'amazon' task='description' %}">
+                                    <div class="mb-3 select_language">
+                                        <label for="language" class="form-label ">Select language*</label>
+                                        <select class="form-control language" id="language" name="language"></select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="productTitle" class="form-label ">Product Name*</label>
+                                        <input type="text" class="form-control producttitle" id="productTitle" name="title">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="description" class="form-label ">Product Description*</label>
+                                        <textarea type="text" class="form-control description" id="description"
+                                            name="description"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if subcategory == 'bullet_points' %}
+                        <div class="sidebar_solo_block w-100 amazon_product">
+                            <div class="col-sm-12 title">Amazon Product Bullet Points</div>
+                            <div class="col-sm-12 subtitle">Write the description about your product and why it's worth
+                                purchasing.</div>
+                            <div class="col-sm-12 form">
+                                <form id="prompt_form" action="{% url 'amazon' task='bullet_points' %}">
+                                    <div class="mb-3 select_language">
+                                        <label for="language" class="form-label ">Select language*</label>
+                                        <select class="form-control language" id="language" name="language"></select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="productTitle" class="form-label ">Product Name*</label>
+                                        <input type="text" class="form-control producttitle" id="productTitle" name="title">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="description" class="form-label ">Product Description*</label>
+                                        <textarea type="text" class="form-control description" id="description"
+                                            name="description"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if subcategory == 'ad_headlines' %}
+                        <div class="sidebar_solo_block w-100 amazon_product">
+                            <div class="col-sm-12 title">Amazon Ad Headline</div>
+                            <div class="col-sm-12 subtitle">Write the description about your product and why it's worth
+                                purchasing.</div>
+                            <div class="col-sm-12 form">
+                                <form id="prompt_form" action="{% url 'amazon' task='ad_headlines' %}">
+                                    <div class="mb-3 select_language">
+                                        <label for="language" class="form-label ">Select language*</label>
+                                        <select class="form-control language" id="language" name="language"></select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="productTitle" class="form-label ">Product Name*</label>
+                                        <input type="text" class="form-control producttitle" id="productTitle" name="title">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="description" class="form-label ">Product Description*</label>
+                                        <textarea type="text" class="form-control description" id="description"
+                                            name="description"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if subcategory == 'title' %}
+                        <div class="sidebar_solo_block w-100 amazon_product">
+                            <div class="col-sm-12 title">Amazon Product Title</div>
+                            <div class="col-sm-12 subtitle">Write the description about your product and why it's worth
+                                purchasing.</div>
+                            <div class="col-sm-12 form">
+                                <form id="prompt_form" action="{% url 'amazon' task='title' %}">
+                                    <div class="mb-3 select_language">
+                                        <label for="language" class="form-label ">Select language*</label>
+                                        <select class="form-control language" id="language" name="language"></select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="description" class="form-label ">Product Description*</label>
+                                        <textarea type="text" class="form-control description" id="description"
+                                            name="description"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endif %}
+                {% if category == 'facebook_ads' %}
+                    <div class="sidebar_solo_block w-100 facebook_ads">
+                        <div class="col-sm-12 title">Facebook Ads</div>
+                        <div class="col-sm-12 subtitle">Write Facebook ads that engage your audience and deliver a high
+                            conversion rate.</div>
+                        <div class="col-sm-12 form">
+                            <form id="prompt_form" action="{% url 'facebook' %}">
+                                <div class="mb-3 select_language">
+                                    <label for="language" class="form-label ">Select language*</label>
+                                    <select class="form-control language" id="language" name="language"></select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="productTitle" class="form-label ">Product Name*</label>
+                                    <input type="text" class="form-control producttitle" id="productTitle" name="title">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="description" class="form-label ">Product Description*</label>
+                                    <textarea type="text" class="form-control description" id="description"
+                                        name="description"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if category == 'facebook_caption' %}
+                    <div class="sidebar_solo_block w-100 facebook_caption">
+                        <div class="col-sm-12 title">Facebook Caption Generator</div>
+                        <div class="col-sm-12 subtitle">Write captions for your Facebook post.</div>
+                        <div class="col-sm-12 form">
+                            <form id="prompt_form" action="{% url 'facebook_caption' %}">
+                                <div class="mb-3 select_language">
+                                    <label for="language" class="form-label ">Select language*</label>
+                                    <select class="form-control language" id="language" name="language"></select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="description" class="form-label ">What is this post about?*</label>
+                                    <textarea type="text" class="form-control description" id="description"
+                                        name="description"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if category == 'page_headline' %}
+                    <div class="sidebar_solo_block w-100 page_headline">
+                        <div class="col-sm-12 title">Landing Page Headline</div>
+                        <div class="col-sm-12 subtitle">Write engaging headlines for your Landing Page or any web page.
+                        </div>
+                        <div class="col-sm-12 form">
+                            <form id="prompt_form" action="{% url 'page_headline' %}">
+                                <div class="mb-3 select_language">
+                                    <label for="language" class="form-label ">Select language*</label>
+                                    <select class="form-control language" id="language" name="language"></select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="pageTitle" class="form-label ">Page title</label>
+                                    <input type="text" class="form-control pagetitle" name="title" id="pageTitle">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="description" class="form-label ">Page Description*</label>
+                                    <textarea type="text" class="form-control description" id="description"
+                                        name="description"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if category == 'insta_caption' %}
+                    <div class="sidebar_solo_block w-100 insta_caption">
+                        <div class="col-sm-12 title">Instagram Captions Generator</div>
+                        <div class="col-sm-12 subtitle">Grab attention with catchy captions for your Instagram posts.</div>
+                        <div class="col-sm-12 form">
+                            <form id="prompt_form" action="{% url 'insta' %}">
+                                <div class="mb-3 select_language">
+                                    <label for="language" class="form-label ">Select language*</label>
+                                    <select class="form-control language" id="language" name="language"></select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="description" class="form-label ">What is this post about?*</label>
+                                    <textarea type="text" class="form-control description" id="description"
+                                        name="description"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if category == 'seo_meta_desc' %}
+                    <div class="sidebar_solo_block w-100 seo_meta_desc">
+                        <div class="col-sm-12 title">SEO Meta Description</div>
+                        <div cl ass="col-sm-12 subtitle">Write SEO-optimized meta description based on a description.</div>
+                        <div class="col-sm-12 form">
+                            <form id="prompt_form" action="{% url 'seo_meta_desc' %}">
+                                <div class="mb-3 select_language">
+                                    <label for="language" class="form-label ">Select language*</label>
+                                    <select class="form-control language" id="language" name="language"></select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="pageTitle" class="form-label ">Website Name*</label>
+                                    <input type="text" class="form-control pagetitle" id="pageTitle" name="title">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="description" class="form-label ">Website Description*</label>
+                                    <textarea type="text" class="form-control description" id="description"
+                                        name="description"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="keyword" class="form-label ">Targeted Keyword*</label>
+                                    <input type="text" class="form-control keyword" id="keyword" name="keywords"></input>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if category == 'generate_keyword' %}
+                    <div class="sidebar_solo_block w-100 generate_keyword">
+                        <div class="col-sm-12 title">Generate Keywords</div>
+                        <div class="col-sm-12 subtitle">Generate keywords for you.</div>
+                        <div class="col-sm-12 form">
+                            <form id="prompt_form" action="{% url 'generate_keyword' %}">
+                                <div class="mb-3">
+                                    <label for="description" class="form-label ">Keyword Description*</label>
+                                    <textarea type="text" class="form-control description" id="description"
+                                        name="description"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if category == 'story_writer' %}
+                <div class="sidebar_solo_block w-100 story_writer">
+                    <div class="col-sm-12 title">Kids Story Writer</div>
+                    <div class="col-sm-12 subtitle">Write exciting story for your kids</div>
+                    <div class="col-sm-12 form">
+                        <form id="prompt_form" action="{% url 'kids_story' %}">
+                            <div class="mb-3 select_language">
+                                <label for="language" class="form-label ">Select language*</label>
+                                <select class="form-control language" id="language" name="language"></select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="story_category" class="form-label ">Select Category*</label>
+                                <select class="form-control story_category" id="category" name="category">
+                                    <option>Select Category</option>
+                                    <option>Animal</option>
+                                    <option>Adventure</option>
+                                    <option>Fairy tales</option>
+                                    <option>Fantasy</option>
+                                    <option>Folktale</option>
+                                    <option>Historical</option>
+                                    <option>Humor</option>
+                                    <option>Moral</option>
+                                    <option>Mystery</option>
+                                    <option>Science fiction</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="title" class="form-label ">Story title*</label>
+                                <input type="text" class="form-control storytitle" name="title" id="title">
+                            </div>
+                            <div class="mb-3">
+                                <label for="quantity" class="form-label ">Enter how many word you want?</label>
+                                <input type="number" class="form-control quantity" id="quantity" max="500"></input>
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label ">Tell me anything you want?</label>
+                                <textarea type="text" class="form-control storydescription description" id="description"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                {% endif %}
+                {% comment %} <div class="col-sm-12">
+                    <button type="submit" id="submit_btn" class="btn">Submit</button>
+                </div> {% endcomment %}
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8 col-md-12 col-sm-12  right_section mt-5" href="#submit_btn">
+        <div class="row">
+            <div class="col-sm-12 all_tabs">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    {% comment %} <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+                            aria-selected="true">All</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-saved-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-saved" type="button" role="tab" aria-controls="pills-saved"
+                            aria-selected="false">Saved</button>
+                    </li> {% endcomment %}
+                    <div class="outer-button-wrap">              
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="pills-text-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-text" type="button" role="tab" aria-controls="pills-text"
+                            aria-selected="true">Text</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-images-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-images" type="button" role="tab" aria-controls="pills-images"
+                            aria-selected="false">Images</button>
+                    </li>
+                    <div class="btn-wrap">
+                        <div class="save_project">
+                            <button type="button" class="btn save-btn" disabled/>
+                            Save</button> 
+                        </div>
+                        <div class="download_cta"> 
+                        <select class="form-select download_btn" aria-label="Default select example" disabled>
+                            <option selected value="download" disabled>Download</option>
+                            <option value="pdf">PDF</option>
+                            <option value="csv">CSV</option>
+                        </select>  
+                        </div>      
+                    </div>
+                    </div>
+                </ul>
+
+
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active result-block" id="pills-text" role="tabpanel"
+                        aria-labelledby="pills-text-tab">
+                        <div class="col-sm-12 result_placeholder_text">
+                            <div class="result_placeholder_wrap">
+                                <p>Your result will appear here....</p>
+                                <div class="loader_text">
+                                    <div class="loader_text_inset">
+                                        <div class="spinner">
+                                            <div class="rect1"></div>
+                                            <div class="rect2"></div>
+                                            <div class="rect3"></div>
+                                            <div class="rect4"></div>
+                                            <div class="rect5"></div>
+                                        </div>
+                                    </div>                        
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="solo_result d-none mb-3">
+                        <label class="container-wrap custom_check"><input type="checkbox">
+                            <span class="checkmark"> </span>
+                        </label>
+                        <div class="status_buttons mb-4">
+                            <div class="select_language">
+                                <select class="form-control change_language language" id="language" disabled /></select>
+                            </div>
+                            <div class="buttons">
+                                <div class="edit_cta common_btn"><button  class="btn" disabled><img src="{% static 'images/edit.svg' %}"></button></div>
+                                <div class="save_project save_cta common_btn">
+                                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#saveProjectPopup" disabled>
+                                        <img src="{% static 'images/save.svg' %}">
+                                    </button> 
+                                </div>
+                                {% comment %} <div class="save_cta common_btn"><button class="active"><img
+                                            src="{% static 'images/save.svg' %}"></button></div> {% endcomment %}
+                                <div class="copy_cta common_btn"><button class="btn copy_btn" disabled><img
+                                            src="{% static 'images/copy.svg' %}"></button></div>
+                                <div class="del_cta common_btn"><button class="btn" disabled><img src="{% static 'images/del.svg' %}"></button></div>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <textarea readonly class="w-100 custom_textarea"></textarea>
+                            <div class="message"
+                                style="display: none; position: absolute; top: 10px; left: 10px; background-color: yellow; padding: 10px;">
+                                Text copied to clipboard.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane fade" id="pills-images" role="tabpanel"
+                        aria-labelledby="pills-images-tab">
+                        <div class="col-sm-12 result_placeholder_image">
+                            <div class="result_placeholder_wrap">
+                                <p>Your image result will appear here....</p>
+                                <div class="loader_image">
+                                    <div class="loader_image_inset">
+                                        <div class="spinner">
+                                            <div class="rect1"></div>
+                                            <div class="rect2"></div>
+                                            <div class="rect3"></div>
+                                            <div class="rect4"></div>
+                                            <div class="rect5"></div>
+                                        </div>
+                                    </div>   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row"></div>
+                        
+
+                    </div>
+                          
+                    
+                </div>
+            </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% comment %} <div class="modal fade" id="saveProjectPopup" tabindex="-1" role="dialog" aria-labelledby="saveProjectPopupTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Save as a project</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="tab">
+                <button class="tablinks active" onclick="openTab(event, 'new_project')">New project</button>
+                <button class="tablinks" onclick="openTab(event, 'existing_project')">Existing project</button>
+            </div>
+            <form id="project_names">
+            <div id="new_project" class="tabcontent">
+                <h4>Create a new project</h4>                
+                <input type="text" class="project_name"  name="new_project" placeholder="Project name">
+            </div>
+            <div id="existing_project" class="tabcontent" style="display: none;">
+                <h4>Add in existing project</h4>
+                <select class="project_name" name="existing_project">
+                </select> 
+            </div>
+            <input id="selected_text" hidden/></input>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary save_as_project">Save</button>
+        </div>
+      </div>
+    </div>
+</div> {% endcomment %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+
+        const responseArray = []
+        let intervalId
+        let promptid
+        let promptUrl
+        {% if promptid %}
+        promptid = {{promptid}}
+        promptUrl = `{{promptUrl}}`
+        {% endif %}
+    </script>
+<script src="{% static 'js/siteScript/popper.min.js' %}"></script>
+{% comment %} <script src="{% static 'js/siteScript/jquery.validate.min.js'%}?v={{CACHE_VERSION}}"></script> {% endcomment %}
+<script src="{% static 'js/appScript/dashboard.js' %}?v={{CACHE_VERSION}}"></script> 
+<script src="{% static 'js/appScript/save_projects.js' %}?v={{CACHE_VERSION}}"></script> 
+ 
+{% endblock content %}

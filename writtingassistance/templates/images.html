@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Images</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/cropper.css' %}">
+    <link href="{% static 'css/common.css' %}" rel="stylesheet">
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="{%static 'js/appScript/siteScript/cropper.js' %}"></script>
+    <script src="{% static 'js/appScript/common.js' %}"></script>
+    <script src="{% static 'js/appScript/constants.js' %}"></script>
+    <script src="{% static 'js/appScript/images.js' %}"></script>
+</head>
+<body>
+  <div class="fixed_loading">
+        <div class="fixed_loading_inset">
+            <div class="spinner">
+                <div class="rect1"></div>
+                <div class="rect2"></div>
+                <div class="rect3"></div>
+                <div class="rect4"></div>
+                <div class="rect5"></div>
+              </div>
+        </div>
+    </div>
+    {% csrf_token %}
+    <div class="wrapper">
+        <div class="innerwrapper">
+            <div class="container">
+                <div class="row mt-5">
+                    <div class="col-md-4">
+                        <select class="options p-1">
+                            <option value="" disabled selected/>Choose an option</option>
+                            <option value="create_image">Create image using text</option>
+                            <option value="create_variation">Create image variations</option>
+                            <option value="edit_image">Edit your image using caption</option>
+                        </select>
+                    </div>
+                    <div class="quantity col-md-4">
+                        <input type="number" class="count" placeholder="Quantity">
+                        <p>Note: Must be between 1 and 10</p>
+                    </div>
+                    <div class="size col-md-4">
+                        <select class="size_options p-1">
+                            <option value="" disabled selected/>Choose image size</option>
+                            <option value="256x256">256x256</option>
+                            <option value="512x512">512x512</option>
+                            <option value="1024x1024">1024x1024</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="select_image col-md-4">
+                        <div class="form-group">
+                            <label for="choosen_image" id="upload_img">
+                                <a class="btn btn-success">Upload Image</a>
+                            </label>
+                            <input type="file" id="choosen_image" name="image" accept="image/png" hidden/>
+                            </div>
+                            <img class="selected_img" src="">
+                        <p>Note: Must be a valid PNG file, less than 4MB, and square.</p>
+                    </div>
+                </div>
+                <div class="text_area">
+                    <h6>Enter your Text</h6>
+                    <textarea class="form-control" name="text"></textarea>
+                </div>
+                <button type="button" id="submit" class="btn btn-success mt-2">Generate Image</button>
+                <h3>Your result will appear here</h3>
+                <div id="result_img"></div>
+            </div>
+        </div>
+    </div>
+    <!--Crop image popup-->
+    <div class="modal" id="image_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <h2>Upload your logo</h2>                       
+               <form method="POST" enctype="multipart/form-data" id="post-form">
+                    <div class="form-group btn_wrap">
+                        <div id="image-box" height="200px" width="200px" class="image-container"></div>
+                        <div class="btn-container d-flex">
+                            <button class="btn btn-outline-info" id="crop-btn"  style="display:none;" type="button">Crop</button>
+                            <button class="btn btn-outline-info savecroppedimg" id="confirm-btn" data-dismiss="modal" style="display:none;" type="button">Save Changes</button>
+                            <button class="btn btn-outline-info close" data-dismiss="modal" type="button">Cancel</button>
+                        </div> 
+                    </div> 
+                </form> 
+            </div>
+          </div>
+        </div>
+      </div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+Django==3.2.16
+openai==0.26.1
+opencv-python==4.7.0.68
+python-dotenv==0.21.0
+authlib==1.0
+requests==2.27
+django-ajax-datatable==4.4.5
+django-datatables-view==1.20.0
+#stripe==5.0.0
